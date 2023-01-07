@@ -19,7 +19,8 @@
         "lint:fix": "eslint --config ./.eslintrc.cjs ./src/**/*.{tsx,ts} --fix",
         "lint:package-json": "npmPkgJsonLint .",
         "postinstall": "husky install",
-        "type-check": "tsc --project tsconfig.json --pretty --noEmit"
+        "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+        "prepare": "husky install"
     },
     "dependencies": {
         "@radix-ui/react-popover": "^1.0.2",
