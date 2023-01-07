@@ -13,11 +13,11 @@ const App: FC = () => {
     return (
         <Suspense fallback={undefined}>
             <Routes>
-                <Route element={<LayoutMain />} path='/'>
+                <Route element={<LayoutMain />} path="/">
                     <Route element={<HomePage />} index />
                 </Route>
-                <Route element={<NotFoundPage />} path='/404' />
-                <Route element={<Navigate to='/404' />} path='*' />
+                <Route element={<NotFoundPage />} path="/404" />
+                <Route element={<Navigate to="/404" />} path="*" />
             </Routes>
         </Suspense>
     );

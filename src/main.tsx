@@ -1,16 +1,17 @@
-import '@/styles/tailwind.css'
+import '@/styles/tailwind.css';
 
-import App from '@/app'
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import App from '@/app';
 
-const element = document.getElementById('__app') as HTMLDivElement
+const element = document.querySelector('#app');
+if (!element) throw new Error('App.tsx - coundn\'t find element with id #app');
 
-const root = createRoot(element)
+const root = createRoot(element);
 
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-)
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+);

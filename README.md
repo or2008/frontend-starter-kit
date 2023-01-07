@@ -1,6 +1,3 @@
-> PS: try this [new template](https://github.com/rizkimcitra/zippy-react) with file-based routing!
-
-
 # <p align="center">⚙️ Stravital</p>
 
 <p align="center">Kickstart your Web Application with React, Vite and Tailwind CSS.
@@ -42,3 +39,6 @@ Stravital is a minimalist starter template, it includes:
    yarn dev
    ```
    look at [http://localhost:3000](http://localhost:3000) to see the development server running.
+
+
+Forked from [stravital](https://github.com/rizkimcitra/stravital) ❤️❤️❤️

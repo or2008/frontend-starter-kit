@@ -80,6 +80,7 @@ module.exports = {
         "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
         "react-perf/jsx-no-jsx-as-prop": 'off',
         "react/forbid-component-props": "off",
+        "jsx-quotes": ["error", "prefer-double"],
 
         // jsx-a11y
         "jsx-a11y/no-static-element-interactions": "off",
