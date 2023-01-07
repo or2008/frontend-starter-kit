@@ -1,7 +1,6 @@
-import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 
-import { themeAtom } from '@/app/store';
+import { useStore } from '@/model/store';
 
 /**
  * a custom hook to switch between light mode and dark mode
@@ -9,7 +8,7 @@ import { themeAtom } from '@/app/store';
  * @returns
  */
 const useTheme = () => {
-    const [theme, setTheme] = useAtom(themeAtom);
+    const { theme, setTheme } = useStore();
     const toggleTheme = () => {
         setTheme(theme === 'light' ? 'dark' : 'light');
     };

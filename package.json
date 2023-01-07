@@ -23,8 +23,8 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@radix-ui/react-popover": "^1.0.2",
-        "react": "^18.2.0",
+        "@radix-ui/react-popover": "1.0.2",
+        "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-icons": "4.7.1",
         "react-router-dom": "6.6.1",
@@ -41,7 +41,7 @@
         "autoprefixer": "10.4.13",
         "cz-conventional-changelog": "3.3.0",
         "eslint": "8.31.0",
-        "eslint-config-hardcore": "^26.0.1",
+        "eslint-config-hardcore": "26.0.1",
         "husky": "8.0.3",
         "lint-staged": "13.1.0",
         "npm-package-json-lint": "6.4.0",

@@ -1,8 +1,8 @@
 import { Suspense, lazy, type FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { useTheme } from '@/hooks';
 import LayoutMain from '@/layouts';
+import useTheme from '@/hooks/use-theme';
 
 const HomePage = lazy(async () => await import('@/pages/home'));
 const NotFoundPage = lazy(async () => await import('@/pages/404'));

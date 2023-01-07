@@ -4,10 +4,9 @@ import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import react_icon from '@/assets/react.svg';
-import { useTheme } from '@/hooks';
 import { ReactImage } from '@/components/atoms/react-image/react-image';
 import PopoverDemo from '@/components/mollecules/PopoverDemo/PopoverDemo';
-
+import useTheme from '@/hooks/use-theme';
 
 interface HomePageProps {
     className?: string;
