@@ -5,10 +5,10 @@ module.exports = {
         node: true
     },
     extends: [
-        "hardcore",
+        // "hardcore",
         "hardcore/react",
-        "hardcore/fp",
-        "hardcore/ts"
+        // "hardcore/fp",
+        // "hardcore/ts"
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -32,12 +32,12 @@ module.exports = {
         "import/exports-last": "off",
         "arrow-body-style": ["error", "as-needed"],
         "arrow-parens": ["error", "as-needed"],
-        "import/extensions": ["error", { "json": "always" }],
         "promise/avoid-new": "off",
         "import/prefer-default-export": "off",
+        "react-perf/jsx-no-new-object-as-prop": "off",
         "curly": [2, "multi-or-nest", "consistent"],
         "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
-        "fp/no-mutation": ["error", { "exceptions": [{ "property": "src" }, { "object": "document", "property": "documentElement" }] }],
+        // "fp/no-mutation": ["error", { "exceptions": [{ "property": "src" }, { "object": "document", "property": "documentElement" }] }],
         "etc/no-commented-out-code": "off",
         // Typescript
         "@typescript-eslint/semi": "error",

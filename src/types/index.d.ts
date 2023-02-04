@@ -1,3 +1,3 @@
 declare module '@my-app' {
-  export type Theme = 'light' | 'dark'
+  export type Theme = 'light' | 'dark';
 }

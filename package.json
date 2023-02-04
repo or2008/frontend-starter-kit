@@ -23,32 +23,35 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@radix-ui/react-popover": "1.0.2",
+        "@radix-ui/react-popover": "1.0.3",
+        "@rainbow-me/rainbowkit": "0.8.1",
+        "ethers": "5.7.2",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-icons": "4.7.1",
-        "react-router-dom": "6.6.1",
-        "tailwind-merge": "1.8.1",
-        "zustand": "4.2.0"
+        "react-router-dom": "6.8.0",
+        "tailwind-merge": "1.9.0",
+        "wagmi": "0.9.6",
+        "zustand": "4.3.2"
     },
     "devDependencies": {
         "@types/node": "18.11.18",
-        "@types/react": "18.0.26",
+        "@types/react": "18.0.27",
         "@types/react-dom": "18.0.10",
-        "@typescript-eslint/eslint-plugin": "5.48.0",
-        "@typescript-eslint/parser": "5.48.0",
-        "@vitejs/plugin-react": "3.0.1",
+        "@typescript-eslint/eslint-plugin": "5.50.0",
+        "@typescript-eslint/parser": "5.50.0",
+        "@vitejs/plugin-react": "3.1.0",
         "autoprefixer": "10.4.13",
         "cz-conventional-changelog": "3.3.0",
-        "eslint": "8.31.0",
+        "eslint": "8.33.0",
         "eslint-config-hardcore": "26.0.1",
         "husky": "8.0.3",
         "lint-staged": "13.1.0",
         "npm-package-json-lint": "6.4.0",
         "postcss": "8.4.21",
         "tailwindcss": "3.2.4",
-        "typescript": "4.9.4",
-        "vite": "4.0.4"
+        "typescript": "4.9.5",
+        "vite": "4.1.1"
     },
     "resolutions": {
         "@types/node": "17.0.23",
@@ -74,7 +77,7 @@
         ],
         "./src/*.{ts,tsx}": [
             "npm run lint",
-            "bash -c 'npm run check-types'"
+            "bash -c 'npm run type-check'"
         ],
         "./package.json": [
             "npm run lint:package-json"

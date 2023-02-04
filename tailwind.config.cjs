@@ -8,32 +8,28 @@ module.exports = {
   darkMode: 'class',
   theme: {
     colors: {
-      primary: {
-        1: colors.sky[200],
-        2: colors.sky[300],
-        3: colors.sky[400],
-        4: colors.sky[500],
-        5: colors.sky[600],
-        6: colors.sky[700]
-      },
-      secondary: {
-        1: colors.purple[200],
-        2: colors.purple[300],
-        3: colors.purple[400],
-        4: colors.purple[500],
-        5: colors.purple[600],
-        6: colors.purple[700]
-      },
-      main: {
-        1: colors.white,
-        2: colors.neutral[50],
-        3: colors.neutral[200],
-        4: colors.neutral[500],
-        5: colors.neutral[600],
-        6: colors.neutral[700],
-        7: colors.neutral[800],
-        8: colors.neutral[900]
-      },
+      primary: colors.sky,
+      secondary: colors.purple,
+      zinc: colors.zinc,
+      neutral: colors.neutral,
+      stone: colors.stone,
+      red: colors.red,
+      orange: colors.orange,
+      amber: colors.amber,
+      yellow: colors.yellow,
+      lime: colors.lime,
+      green: colors.green,
+      emerald: colors.emerald,
+      teal: colors.teal,
+      cyan: colors.cyan,
+      sky: colors.sky,
+      blue: colors.blue,
+      indigo: colors.indigo,
+      violet: colors.violet,
+      purple: colors.purple,
+      fuchsia: colors.fuchsia,
+      pink: colors.pink,
+      rose: colors.rose,
       transparent: colors.transparent
     },
     fontFamily: {

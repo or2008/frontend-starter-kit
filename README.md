@@ -12,7 +12,7 @@ Stravital is a minimalist starter template, it includes:
 - ⚛️ React 18
 - 🏄 React Router DOM
 - 💎 TypeScript (of course)
-- 💨 Tailwind CSS + @radix-ui/react-popover
+- 💨 Tailwind CSS + @radix-ui unstyled
 - 🔨 Eslint
 - ☄️ Conventional Commit
 - 📡 Huksy & Lint Staged
@@ -30,15 +30,14 @@ Stravital is a minimalist starter template, it includes:
    ```
 
 2. Install the dependencies
-   I recommend you to use yarn instead of npm
    ```bash
-   yarn install
+   npm install
    ```
 3. Start the development server
    ```bash
-   yarn dev
+   npm run dev
    ```
-   look at [http://localhost:3000](http://localhost:3000) to see the development server running.
+   look at [http://localhost:5173](http://localhost:5173) to see the development server running.
 
 
 Forked from [stravital](https://github.com/rizkimcitra/stravital) ❤️❤️❤️

@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import LayoutMain from '@/layouts';
 import useTheme from '@/hooks/use-theme';
 
-const HomePage = lazy(async () => await import('@/pages/home'));
+const HomePage = lazy(async () => await import('@/pages/\home'));
 const NotFoundPage = lazy(async () => await import('@/pages/404'));
 
 const App: FC = () => {
