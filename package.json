@@ -25,10 +25,11 @@
     "dependencies": {
         "@radix-ui/react-popover": "1.0.3",
         "@rainbow-me/rainbowkit": "0.8.1",
+        "@uniswap/default-token-list": "8.2.0",
+        "@uniswap/token-lists": "1.0.0-beta.31",
         "ethers": "5.7.2",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-icons": "4.7.1",
         "react-router-dom": "6.8.0",
         "tailwind-merge": "1.9.0",
         "wagmi": "0.9.6",
@@ -51,7 +52,8 @@
         "postcss": "8.4.21",
         "tailwindcss": "3.2.4",
         "typescript": "4.9.5",
-        "vite": "4.1.1"
+        "vite": "4.1.1",
+        "vite-plugin-svgr": "2.4.0"
     },
     "resolutions": {
         "@types/node": "17.0.23",

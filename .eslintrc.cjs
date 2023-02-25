@@ -35,6 +35,7 @@ module.exports = {
         "promise/avoid-new": "off",
         "import/prefer-default-export": "off",
         "react-perf/jsx-no-new-object-as-prop": "off",
+        "react/destructuring-assignment": ["error", "always", { "destructureInSignature": "ignore" }],
         "curly": [2, "multi-or-nest", "consistent"],
         "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
         // "fp/no-mutation": ["error", { "exceptions": [{ "property": "src" }, { "object": "document", "property": "documentElement" }] }],
