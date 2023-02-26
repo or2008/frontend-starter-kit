@@ -38,6 +38,7 @@ module.exports = {
         "react/jsx-no-bind": ["error", { "allowArrowFunctions": true }],
         "react-perf/jsx-no-new-object-as-prop": "off",
         "react/jsx-props-no-spreading": "off",
+        "react/jsx-no-leaked-render": ["off"],
         "react/destructuring-assignment": ["error", "always", { "destructureInSignature": "ignore" }],
         "curly": [2, "multi-or-nest", "consistent"],
         "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
@@ -48,11 +49,13 @@ module.exports = {
         "@typescript-eslint/prefer-readonly-parameter-types": "off",
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/quotes": ["error", "single", { "avoidEscape": true }],
+
         "@typescript-eslint/naming-convention": [
             "error",
             {
                 "selector": "variable",
                 "types": ["boolean"],
+                "leadingUnderscore": "allow",
                 "format": ["PascalCase"],
                 "prefix": ["is", "should", "has", "can", "did", "will"]
             },

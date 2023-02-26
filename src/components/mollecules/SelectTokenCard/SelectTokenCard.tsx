@@ -50,10 +50,8 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
     }
 
     function renderSelectedIcon(tokenAddress: string) {
-        if (!isSelected(tokenAddress)) return;
-
         return (
-            <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+            <div className={twMerge('inline-flex items-center text-base font-semibold text-gray-900 dark:text-white')}>
                 <Icon className="h-4 w-4 text-green-600 dark:text-green-400" iconName="check" />
             </div>
         );
@@ -61,8 +59,14 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
 
     function renderToken(token: TokenInfo) {
         const { address, symbol, name, logoURI } = token;
+        const _isSelected = isSelected(address);
+
         return (
-            <li className="py-3 lg:py-4 cursor-pointer" key={address} onClick={() => onTokenClick(address)}>
+            <li
+                className={twMerge('transition py-3 lg:py-4 cursor-pointer', _isSelected && '')}
+                key={address}
+                onClick={() => onTokenClick(address)}>
+
                 <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
                         <img alt={name} className="w-8 h-8 rounded-full" src={logoURI} />
@@ -75,7 +79,7 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
                             {name}
                         </p>
                     </div>
-                    {renderSelectedIcon(address)}
+                    {_isSelected && renderSelectedIcon(address)}
                 </div>
             </li>
         );
@@ -107,8 +111,15 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
     function renderContent() {
         return (
             <div className="w-full">
-                <div className="flexitems-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4">
                     <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Select a token</h5>
+                    <div className="flex text-blue-600 dark:text-blue-500">
+                        <div className="text-sm hover:underline font-medium cursor-pointer">View selected</div>
+                        <div className="bg-blue-100 text-xs font-medium ml-2 h-5 w-5
+                                        flex items-center justify-center rounded-full dark:bg-gray-900 border border-blue-500">
+                            {selectedTokenAddresses.size}
+                        </div>
+                    </div>
                 </div>
 
                 {renderSearchInput()}
