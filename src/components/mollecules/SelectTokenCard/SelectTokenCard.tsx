@@ -18,10 +18,11 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
 
     const [searchValue, setSearchValue] = useState('');
     const [filteredTokens, setFilteredTokens] = useState(TOKENS);
-    const [selectedTokenAddresses, setSelectedTokenAddresses] = useState(new Set<string>());
+    const [selectedTokens, setSelectedTokens] = useState<TokenInfo[]>([]);
+    const [isViewSelected, setIsViewSelected] = useState(false);
 
     function getBaseClassname() {
-        return twMerge('flex');
+        return twMerge('');
     }
 
     const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -29,13 +30,22 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
         filterTokens(event.target.value);
     }, []);
 
-    function onTokenClick(tokenAddress: string) {
-        if (selectedTokenAddresses.has(tokenAddress))
-            selectedTokenAddresses.delete(tokenAddress);
-        else
-            selectedTokenAddresses.add(tokenAddress);
+    const onViewSelectedClick = useCallback(() => {
+        setIsViewSelected(!isViewSelected);
+    }, [isViewSelected]);
 
-        setSelectedTokenAddresses(new Set(selectedTokenAddresses));
+    function onTokenClick(token: TokenInfo) {
+        const { address } = token;
+        const index = selectedTokens.findIndex(_token => _token.address === address);
+
+        if (index === -1)
+            return setSelectedTokens([...selectedTokens, token]);
+
+
+        // remove element if already exists
+        const newArray = [...selectedTokens];
+        newArray.splice(index, 1);
+        return setSelectedTokens(newArray);
     }
 
     function filterTokens(query: string) {
@@ -46,13 +56,28 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
     }
 
     function isSelected(tokenAddress: string) {
-        return selectedTokenAddresses.has(tokenAddress);
+        return selectedTokens.some(token => token.address === tokenAddress);
     }
 
-    function renderSelectedIcon(tokenAddress: string) {
+    function renderSelectedIcon() {
+        return (
+            <Icon className="h-6 w-6 text-green-600 dark:text-green-400" iconName="check" />
+        );
+    }
+
+    function renderDeleteIcon() {
+        return (
+            <Icon className="h-6 w-6 text-red-600 dark:text-red-400" iconName="x-mark" />
+        );
+    }
+
+    function renderActionIcon(tokenAddress: string) {
+        const _isSelected = isSelected(tokenAddress);
+
         return (
             <div className={twMerge('inline-flex items-center text-base font-semibold text-gray-900 dark:text-white')}>
-                <Icon className="h-4 w-4 text-green-600 dark:text-green-400" iconName="check" />
+                {_isSelected && isViewSelected && renderDeleteIcon()}
+                {_isSelected && !isViewSelected && renderSelectedIcon()}
             </div>
         );
     }
@@ -65,7 +90,7 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
             <li
                 className={twMerge('transition py-3 lg:py-4 cursor-pointer', _isSelected && '')}
                 key={address}
-                onClick={() => onTokenClick(address)}>
+                onClick={() => onTokenClick(token)}>
 
                 <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
@@ -79,13 +104,15 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
                             {name}
                         </p>
                     </div>
-                    {_isSelected && renderSelectedIcon(address)}
+                    {renderActionIcon(address)}
                 </div>
             </li>
         );
     }
 
     function renderTokens() {
+        if (isViewSelected) return selectedTokens.map(renderToken);
+
         return filteredTokens.map(renderToken);
     }
 
@@ -108,16 +135,38 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
         return <InputWithIcon {...props} />;
     }
 
+    function renderViewSelectedEmptyState() {
+        if (!isViewSelected) return;
+        if (selectedTokens.length > 0) return;
+
+        return (
+            <div className="text-center py-12">
+                <Icon className="h-20 w-20 mx-auto" iconName="exclamation-triangle" />
+                <h5 className="mb-2 mt-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">No Tokens Selected</h5>
+                <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Select one or more tokens from the list to view them here</p>
+                <div className="text-sm hover:underline font-medium cursor-pointer" onClick={onViewSelectedClick}>View all tokens</div>
+            </div>
+        );
+    }
+
+    function renderToggleViewSelected() {
+        let text = 'View selected tokens';
+        if (isViewSelected)
+            text = 'View all tokens';
+
+        return <div className="text-sm hover:underline font-medium cursor-pointer" onClick={onViewSelectedClick}>{text}</div>;
+    }
+
     function renderContent() {
         return (
             <div className="w-full">
                 <div className="flex items-center justify-between mb-4">
-                    <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Select a token</h5>
+                    <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Choose Tokens</h5>
                     <div className="flex text-blue-600 dark:text-blue-500">
-                        <div className="text-sm hover:underline font-medium cursor-pointer">View selected</div>
+                        {renderToggleViewSelected()}
                         <div className="bg-blue-100 text-xs font-medium ml-2 h-5 w-5
                                         flex items-center justify-center rounded-full dark:bg-gray-900 border border-blue-500">
-                            {selectedTokenAddresses.size}
+                            {selectedTokens.length}
                         </div>
                     </div>
                 </div>
@@ -133,6 +182,7 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
     return (
         <Card className={getBaseClassname()}>
             {renderContent()}
+            {renderViewSelectedEmptyState()}
         </Card>
     );
 };
