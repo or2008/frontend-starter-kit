@@ -2,12 +2,12 @@ import Card from '@/components/atoms/Card/Card';
 import { ChangeEvent, FC, PropsWithChildren, useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import uniswapDefaultTokenList from '@uniswap/default-token-list';
-import { schema, TokenInfo } from '@uniswap/token-lists'
+import { schema, TokenInfo } from '@uniswap/token-lists';
 import Input, { InputProps } from '@/components/atoms/Input/Input';
 import Icon from '@/components/atoms/Icon/Icon';
 import InputWithIcon, { InputWithIconProps } from '@/components/atoms/Input/InputWithIcon';
 
-const TOKENS: TokenInfo[] = uniswapDefaultTokenList.tokens.filter((token) => token.chainId === 1); // only ethereum tokens
+const TOKENS: TokenInfo[] = uniswapDefaultTokenList.tokens.filter(token => token.chainId === 1); // only ethereum tokens
 
 export interface SelectTokenCardProps {
     className?: string;
@@ -16,32 +16,56 @@ export interface SelectTokenCardProps {
 const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
     const { children, className = '' } = props;
 
-    const [value, setValue] = useState('');
+    const [searchValue, setSearchValue] = useState('');
     const [filteredTokens, setFilteredTokens] = useState(TOKENS);
+    const [selectedTokenAddresses, setSelectedTokenAddresses] = useState(new Set<string>());
 
     function getBaseClassname() {
         return twMerge('flex');
     }
 
     const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-        setValue(() => event.target.value);
+        setSearchValue(() => event.target.value);
         filterTokens(event.target.value);
-    }, [value]);
+    }, []);
+
+    function onTokenClick(tokenAddress: string) {
+        if (selectedTokenAddresses.has(tokenAddress))
+            selectedTokenAddresses.delete(tokenAddress);
+        else
+            selectedTokenAddresses.add(tokenAddress);
+
+        setSelectedTokenAddresses(new Set(selectedTokenAddresses));
+    }
 
     function filterTokens(query: string) {
         if (!query) return setFilteredTokens(TOKENS);
 
-        const filteredTokens = TOKENS.filter((token) => token.name.toLowerCase().includes(query.toLowerCase()) || token.symbol.toLowerCase().includes(query.toLowerCase()));
+        const filteredTokens = TOKENS.filter(token => token.name.toLowerCase().includes(query.toLowerCase()) || token.symbol.toLowerCase().includes(query.toLowerCase()));
         setFilteredTokens(filteredTokens);
+    }
+
+    function isSelected(tokenAddress: string) {
+        return selectedTokenAddresses.has(tokenAddress);
+    }
+
+    function renderSelectedIcon(tokenAddress: string) {
+        if (!isSelected(tokenAddress)) return;
+
+        return (
+            <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                <Icon className="h-4 w-4 text-green-600 dark:text-green-400" iconName="check" />
+            </div>
+        );
     }
 
     function renderToken(token: TokenInfo) {
         const { address, symbol, name, logoURI } = token;
         return (
-            <li key={address} className="py-3 lg:py-4 cursor-pointer">
+            <li className="py-3 lg:py-4 cursor-pointer" key={address} onClick={() => onTokenClick(address)}>
                 <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
-                        <img className="w-8 h-8 rounded-full" src={logoURI} alt={name} />
+                        <img alt={name} className="w-8 h-8 rounded-full" src={logoURI} />
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -51,24 +75,22 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
                             {name}
                         </p>
                     </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        $320
-                    </div>
+                    {renderSelectedIcon(address)}
                 </div>
             </li>
         );
     }
 
     function renderTokens() {
-        return filteredTokens.map(renderToken)
+        return filteredTokens.map(renderToken);
     }
 
     function renderSearchInput() {
         const inputProps: InputProps = {
             placeholder: 'Type token name or symbol',
-            value,
+            value: searchValue,
             onChange,
-            className: "mt-4 mb-2"
+            className: 'mt-4 mb-2'
         };
 
         const props: InputWithIconProps = {
@@ -90,7 +112,7 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
                 </div>
 
                 {renderSearchInput()}
-                <ul role="list" className="divide-y overflow-auto max-h-80 divide-gray-200 dark:divide-gray-700">
+                <ul className="divide-y overflow-auto max-h-80 divide-gray-200 dark:divide-gray-700">
                     {renderTokens()}
                 </ul>
             </div>
