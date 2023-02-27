@@ -1,6 +1,6 @@
-import { useDynamicSvgImport } from "@/hooks/use-dynamic-svg-import";
-import { FC, PropsWithChildren } from "react";
-import { twMerge } from "tailwind-merge";
+import { useDynamicSvgImport } from '@/hooks/use-dynamic-svg-import';
+import { FC, PropsWithChildren } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export interface IconProps {
   iconName: string;
@@ -9,21 +9,21 @@ export interface IconProps {
 }
 
 const Icon: FC<PropsWithChildren<IconProps>> = props => {
-  const { iconName, className, svgProps } = props;
-  const { loading, SvgIcon } = useDynamicSvgImport(iconName);
+    const { iconName, className, svgProps } = props;
+    const { isLoading, SvgIcon } = useDynamicSvgImport(iconName);
 
-  return (
-    <>
-      {loading && (
-        <div className="rounded-full bg-slate-400 animate-pulse h-8 w-8"></div>
-      )}
-      {SvgIcon && (
-        <div className={twMerge(className)}>
-          <SvgIcon {...svgProps} />
-        </div>
-      )}
-    </>
-  );
-}
+    return (
+        <>
+            {isLoading && (
+                <div className={twMerge('h-8 w-8', className)} />
+            )}
+            {SvgIcon && (
+                <div className={twMerge(className)}>
+                    <SvgIcon {...svgProps} />
+                </div>
+            )}
+        </>
+    );
+};
 
 export default Icon;

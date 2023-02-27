@@ -61,12 +61,13 @@ module.exports = {
             },
             {
                 "selector": "variable",
+                "leadingUnderscore": "allow",
                 "format": ["camelCase", "PascalCase", "UPPER_CASE"]
             },
             {
                 "selector": "parameter",
                 "format": ["camelCase"],
-                "leadingUnderscore": "allow"
+                "leadingUnderscore": "allow",
             },
             {
                 "selector": "memberLike",
@@ -77,6 +78,7 @@ module.exports = {
 
             {
                 "selector": "typeLike",
+                "leadingUnderscore": "allow",
                 "format": ["PascalCase"]
             }
         ],

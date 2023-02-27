@@ -6,6 +6,7 @@ import { schema, TokenInfo } from '@uniswap/token-lists';
 import Input, { InputProps } from '@/components/atoms/Input/Input';
 import Icon from '@/components/atoms/Icon/Icon';
 import InputWithIcon, { InputWithIconProps } from '@/components/atoms/Input/InputWithIcon';
+import EmptyState from '@/components/atoms/EmptyState/EmptyState';
 
 const TOKENS: TokenInfo[] = uniswapDefaultTokenList.tokens.filter(token => token.chainId === 1); // only ethereum tokens
 
@@ -140,12 +141,14 @@ const SelectTokenCard: FC<PropsWithChildren<SelectTokenCardProps>> = props => {
         if (selectedTokens.length > 0) return;
 
         return (
-            <div className="text-center py-12">
-                <Icon className="h-20 w-20 mx-auto" iconName="exclamation-triangle" />
-                <h5 className="mb-2 mt-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">No Tokens Selected</h5>
-                <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Select one or more tokens from the list to view them here</p>
-                <div className="text-sm hover:underline font-medium cursor-pointer" onClick={onViewSelectedClick}>View all tokens</div>
-            </div>
+            <EmptyState
+                className="mx-auto"
+                iconProps={{}}
+                message="Select one or more tokens from the list to view them here"
+                title="No Tokens Selected">
+
+                <div className="text-sm mt-3 hover:underline font-medium cursor-pointer" onClick={onViewSelectedClick}>View all tokens</div>
+            </EmptyState>
         );
     }
 
