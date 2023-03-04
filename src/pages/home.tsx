@@ -9,10 +9,14 @@ import SelectTokenCard from '@/components/mollecules/SelectTokenCard/SelectToken
 import Footer from '@/components/mollecules/Footer/Footer';
 import Icon from '@/components/atoms/Icon/Icon';
 import ToggleSwitch from '@/components/atoms/ToggleSwitch/ToggleSwitch';
+import Stepper from '@/components/atoms/Stepper/Stepper';
+import { randomIntFromInterval } from '@/utils/number';
 
 interface HomePageProps {
     className?: string;
 }
+
+const STEPS = ['Personal Info', 'Account', 'Confirmation'];
 
 const Home: FC<HomePageProps> = ({ className = '' }) => {
     const { theme, toggleTheme } = useTheme();
@@ -25,9 +29,6 @@ const Home: FC<HomePageProps> = ({ className = '' }) => {
                 <h1 className="bg-clip-text text-transparent dark:text-transparent bg-gradient-to-r from-primary-5 to-secondary-5">Stravital</h1>
                 <p className="text-center">Kickstart your Web Application with React, Vite and Tailwind CSS.</p>
 
-
-
-
                 <div className="cursor-pointer flex items-center justify-center gap-2">
                     <PopoverDemo />
                 </div>
@@ -35,6 +36,7 @@ const Home: FC<HomePageProps> = ({ className = '' }) => {
                 {/* <UnderlineLink to='/foo'>See 404</UnderlineLink> */}
             </section>
 
+            <Stepper className="my-8" currentStepIndex={randomIntFromInterval(0, 2)} steps={STEPS} />
 
             <SelectTokenCard />
 

@@ -16,9 +16,9 @@ const Header: FC<PropsWithChildren<HeaderProps>> = props => {
     function renderContent() {
         return (
             <nav className="z-10 w-full">
-                <div className="flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative">
+                <div className="flex flex-wrap items-center justify-between py-2 gap-6 lg:py-4 lg:gap-0 relative">
                     <input aria-hidden="true" type="checkbox" name="toggle_nav" id="toggle_nav" className="hidden peer" />
-                    <div className="relative z-20 w-full flex justify-between lg:w-max md:px-0">
+                    <div className="relative z-20 w-full flex justify-between lg:w-max lg:px-0">
                         <a href="#home" aria-label="logo" className="flex space-x-2 items-center">
                             <div aria-hidden="true" className="flex space-x-1">
                                 <div className="h-4 w-4 rounded-full bg-gray-900 dark:bg-white"></div>
@@ -44,7 +44,7 @@ const Header: FC<PropsWithChildren<HeaderProps>> = props => {
                         <div className="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0">
                             <ul className="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0">
                                 <li>
-                                    <a href="#blog" className="block md:px-4 transition hover:text-primary">
+                                    <a href="#blog" className="block lg:px-4 transition hover:text-primary">
                                         <span>Blog</span>
                                     </a>
                                 </li>

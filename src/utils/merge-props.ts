@@ -51,7 +51,7 @@ export function mergeIds(idA: string, idB: string): string {
 
 /**
  * Merges multiple props objects together. Event handlers are chained,
- * classNames are combined, and ids are deduplicated - different ids
+ * classNames are combined with tailwind merge, and ids are deduplicated - different ids
  * will trigger a side-effect and re-render components hooked up with `useId`.
  * For all other props, the last prop object overrides all previous ones.
  * @param args - Multiple sets of props to merge together.
