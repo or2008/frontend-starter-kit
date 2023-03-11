@@ -38,6 +38,7 @@ module.exports = {
         "react/jsx-no-bind": ["error", { "allowArrowFunctions": true }],
         "react-perf/jsx-no-new-object-as-prop": "off",
         "react/jsx-props-no-spreading": "off",
+        "react-hooks/exhaustive-deps": "off",
         "react/jsx-no-leaked-render": ["off"],
         "react/destructuring-assignment": ["error", "always", { "destructureInSignature": "ignore" }],
         "curly": [2, "multi-or-nest", "consistent"],
@@ -57,7 +58,7 @@ module.exports = {
                 "types": ["boolean"],
                 "leadingUnderscore": "allow",
                 "format": ["PascalCase"],
-                "prefix": ["is", "should", "has", "can", "did", "will"]
+                "prefix": ["is", "should", "has", "can", "did", "will", "show", "enable", "disable"]
             },
             {
                 "selector": "variable",

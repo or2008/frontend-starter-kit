@@ -1,16 +1,19 @@
 import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ReactImage } from '@/components/atoms/react-image/react-image';
 import PopoverDemo from '@/components/mollecules/PopoverDemo/PopoverDemo';
 import useTheme from '@/hooks/use-theme';
 import Header from '@/components/mollecules/Header/Header';
 import SelectTokenCard from '@/components/mollecules/SelectTokenCard/SelectTokenCard';
 import Footer from '@/components/mollecules/Footer/Footer';
-import Icon from '@/components/atoms/Icon/Icon';
 import ToggleSwitch from '@/components/atoms/ToggleSwitch/ToggleSwitch';
 import Stepper from '@/components/atoms/Stepper/Stepper';
 import { randomIntFromInterval } from '@/utils/number';
+import CreateWallet from '@/components/mollecules/CreateWallet/CreateWallet';
+import Card from '@/components/atoms/Card/Card';
+import Tooltip from '@/components/atoms/Tooltip/Tooltip';
+import Text from '@/components/atoms/Text/Text';
+import TooltipContainer from '@/components/atoms/Tooltip/TooltipContainer';
 
 interface HomePageProps {
     className?: string;
@@ -36,14 +39,30 @@ const Home: FC<HomePageProps> = ({ className = '' }) => {
                 {/* <UnderlineLink to='/foo'>See 404</UnderlineLink> */}
             </section>
 
+            <TooltipContainer className="">
+                <Text>Hover me</Text>
+                <Tooltip><Text>lalalalalala lalal allal ala lala</Text></Tooltip>
+            </TooltipContainer>
+
+            <div className="relative">
+                <Tooltip><Text>SHOULD be SHOWN</Text></Tooltip>
+            </div>
             <Stepper className="my-8" currentStepIndex={randomIntFromInterval(0, 2)} steps={STEPS} />
 
+            <Card>
+                <CreateWallet />
+            </Card>
+            <br/>
             <SelectTokenCard />
+            <br/>
+
 
             <div className="text-center cursor-pointer">
                 <div>Dark Mode?</div>
                 <ToggleSwitch isOn={theme === 'dark'} onChange={toggleTheme} />
             </div>
+
+            <br />
 
             <Footer />
         </div>
