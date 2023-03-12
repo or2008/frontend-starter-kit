@@ -4,6 +4,7 @@ import Text from '@/components/atoms/Text/Text';
 import { FC, PropsWithChildren, useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { copyTextToClipboard } from '@/utils/string';
+import { mergeProps } from '@/utils/merge-props';
 
 export interface CopyToClipboardProps {
     className?: string;
@@ -19,7 +20,7 @@ const CopyToClipboard: FC<PropsWithChildren<CopyToClipboardProps>> = props => {
     const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
 
     function getBaseClassname() {
-        return twMerge('flex items-center cursor-pointer', className);
+        return twMerge('flex relative items-center cursor-pointer', className);
     }
 
 
@@ -41,10 +42,15 @@ const CopyToClipboard: FC<PropsWithChildren<CopyToClipboardProps>> = props => {
     }, []);
 
     function renderTooltip() {
-        const { successMessage, tooltipProps = {} } = props;
+        const { successMessage = '', tooltipProps = {} } = props;
         if (!isTooltipVisible) return;
+
+        const _tooltipProps = mergeProps<TooltipProps[]>({
+            position: 'top',
+            className: 'absolute'
+        }, tooltipProps);
         return (
-            <Tooltip position="top" {...tooltipProps}>
+            <Tooltip {..._tooltipProps}>
                 <Text>{successMessage || 'Copied to clipboard'}</Text>
             </Tooltip>
         );

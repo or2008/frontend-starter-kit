@@ -12,8 +12,12 @@ const TooltipContainer: FC<PropsWithChildren<TooltipContainerProps>> = props => 
     const { bindHover, isHover } = useHover();
 
     function getBaseClassname() {
-        return twMerge('transition group relative inline-block', !isHover && 'is-inactive', className);
+        return twMerge(`transition relative
+        [&>.tooltip]:absolute [&>.tooltip]:invisible [&>.tooltip]:opacity-0 inline-block`,
+        isHover && '[&>.tooltip]:visible [&>.tooltip]:opacity-100',
+        className);
     }
+
 
     return (
         <div {...bindHover} className={getBaseClassname()}>
