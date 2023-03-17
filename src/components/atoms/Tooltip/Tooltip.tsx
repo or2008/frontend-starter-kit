@@ -15,8 +15,8 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = props => {
     }
 
     function getBaseClassname() {
-        return twMerge(`tooltip transition max-w-max text-gray-900 dark:text-gray-50 text-xs text-center
-        border border-gray-200 rounded-lg shadow dark:border-gray-700 rounded-lg bg-white
+        return twMerge(`tooltip b transition max-w-max text-gray-900 dark:text-gray-50 text-xs text-center
+        border border-gray-200 dark:border-gray-700 rounded-lg bg-white
         dark:bg-gray-900 p-3 shadow`,
         getPositionClassname(),
         className);

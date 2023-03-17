@@ -39,7 +39,9 @@ module.exports = {
         "react-perf/jsx-no-new-object-as-prop": "off",
         "react/jsx-props-no-spreading": "off",
         "react-hooks/exhaustive-deps": "off",
-        "react/jsx-no-leaked-render": ["off"],
+        "react/jsx-no-leaked-render": "off",
+        "ssr-friendly/no-dom-globals-in-module-scope": "off",
+
         "react/destructuring-assignment": ["error", "always", { "destructureInSignature": "ignore" }],
         "curly": [2, "multi-or-nest", "consistent"],
         "func-style": ["error", "declaration", { "allowArrowFunctions": true }],

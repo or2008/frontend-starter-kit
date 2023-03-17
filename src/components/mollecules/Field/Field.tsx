@@ -19,7 +19,7 @@ const Field: FC<PropsWithChildren<FieldProps>> = props => {
     }
 
     function renderLabel() {
-        return <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>;
+        return <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" />;
     }
 
     function renderInput() {
@@ -41,7 +41,11 @@ const Field: FC<PropsWithChildren<FieldProps>> = props => {
     }
 
     function renderHelper() {
-        return <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500 dark:text-gray-400">We’ll never share your details. Read our <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Privacy Policy</a>.</p>;
+        return (<p className="mt-2 text-sm text-gray-500 dark:text-gray-400" id="helper-text-explanation">
+            We’ll never share your details. Read our
+            <a className="font-medium text-blue-600 hover:underline dark:text-blue-500" href="/">Privacy Policy</a>.
+        </p>
+        );
     }
 
     return (

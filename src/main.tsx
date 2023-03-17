@@ -1,3 +1,4 @@
+import './polyfills';
 import '@/styles/tailwind.css';
 import '@rainbow-me/rainbowkit/styles.css';
 
